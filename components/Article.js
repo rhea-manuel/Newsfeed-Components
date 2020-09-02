@@ -86,6 +86,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Rhea\'s library',
+    date: 'September 2nd, 2020',
+    firstParagraph: `Dragée sweet roll gingerbread. Halvah marshmallow gummi bears powder. Ice cream tart gummies. Marshmallow lollipop gingerbread. Jelly marshmallow marshmallow cake biscuit bonbon pie. Candy canes jelly-o cotton candy carrot cake sweet marshmallow sweet sweet. Gummi bears jelly beans brownie halvah tootsie roll icing wafer powder. Tootsie roll cookie icing dessert toffee.`,
+
+    secondParagraph: `Ice cream pudding pie ice cream gummies. Lollipop sesame snaps chocolate cake cupcake jelly-o sweet. Tiramisu carrot cake danish topping fruitcake jelly beans jelly-o lemon drops gingerbread. Sugar plum cookie sugar plum biscuit. Cupcake gingerbread sweet roll. `,
+
+    thirdParagraph: `Topping jelly-o dessert. Liquorice lollipop tootsie roll topping ice cream cupcake powder cheesecake gummi bears. Cake soufflé oat cake cake marshmallow icing pie dragée. Gummi bears cake bear claw. Candy canes gingerbread pie muffin. Marshmallow candy canes cheesecake. Chocolate cake tart liquorice candy jelly muffin chocolate cake macaroon cheesecake.`
   }
 ];
 
@@ -114,3 +124,87 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker(article) {
+  const parentPanel = document.createElement('div')
+  parentPanel.className="article"
+
+  const allChildren = Object.values(article)
+  // console.log(allChildren)
+
+  const types = ['h2', 'p', 'p', 'p', 'p']
+  createChildren()
+  // const allChildren = []
+
+  // const heading = document.createElement('h2').textContent = article.title
+  // const date = document.createElement('p').textContent = article.date
+  // const firstParagraph = document.createElement('p').textContent = article.firstParagraph
+  // const secondParagraph = document.createElement('p').textContent = article.secondParagraph
+  // const thirdParagraph = document.createElement('p').textContent = article.thirdParagraph
+  // const span = document.createElement('span').textContent = article.span
+
+  function createChildren() {
+    for (let i = 0; i < types.length; i++) {
+      const toAdd = document.createElement(types[i])
+      toAdd.textContent = allChildren[i]
+
+      parentPanel.appendChild(toAdd)
+      // parentPanel.appendChild(document.createElement(types[i]).textContent=allChildren[i])
+    }
+  }
+
+  parentPanel.querySelector('p').classList.add('date')
+  const span = document.createElement('span')
+  span.textContent = "+"
+  span.classList.add("expandButton")
+
+  // console.log(span)
+  parentPanel.appendChild(span)
+
+  span.addEventListener('click', function(){
+    parentPanel.classList.toggle("article-open")
+  })
+
+  return parentPanel
+  // console.log(parentPanel)
+  // parentPanel.appendChild(document.createElement('span').className='expandbutton')
+
+  // console.lo
+
+  // const childrenTypes = [{type:'h2'},{type:'p'},{type:'p'},{type:'p'},'p','span']
+
+  // console.log(childrenTypes[0].happy)
+
+  // const allChildren = [{text:article.title, type:'h2', className:null},{text:article., type:'h2', className:null}]
+  // // const allChildren = [document.createElement('h2'),document.createElement('p').className='date', document.createElement('p'), document.createElement('p'), document.createElement('p'), document.createElement('span').className='expandButton']
+
+  // // const values = Object.values(article)
+
+  // function helper(allChildrenTypes){
+  //   // all children types is an array of objects. each object has a 'type' and 'className'
+  //   // parent is the parent panel that each new child element is attached to.
+
+  //   for (i = 0; i < allChildrenTypes.length; i++){
+  //     const curElement = document.createElement(allChildrenTypes[i].type)
+  //     if (allChildrenTypes[i].className!=null){
+  //       curElement.className=allChildrenTypes[i].className
+  //     }
+  //     parentPanel.appendChild(curElement)
+  //   }
+  // }
+
+  // for (let i = 0; i < allChildren.length; i++){
+
+  // }
+  // const h2 = 
+  // const 
+}
+
+// console.log(data[0])
+
+const parentDiv = document.querySelector('.articles')
+for (let i = 0; i < data.length; i++) {
+  const newArticle = articleMaker(data[i])
+  parentDiv.appendChild(newArticle)
+}
+
+
