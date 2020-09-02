@@ -48,30 +48,10 @@ function menuMaker(items) {
 
   const button = document.querySelector('.menu-button')
 
-  // animations
-  // var menuSlide = new TimelineMax()
-  // .to(menuDiv, 0.25, { opacity: 0.5, scale: 0.75 })
-  // .reverse();
-  const menuSlide = gsap.timeline({paused: true})
-  menuSlide.from(menuDiv, {scaleX:0, duration:.5, transformOrigin: 'left'})
-  menuSlide.to(menuDiv, {scaleX:1, duration:.5, transformOrigin: 'left'})
-  menuSlide.reverse()
-
   button.addEventListener('click', function () {
-    // menuSlide.reverse()
-    menuSlide.restart()
-    // menuSlide.reverse()
-    // menuSlide.restart()
-    // gsap.fromTo(menuDiv, {opacity: 0, duration:1}, {opacity: 100, duration: 1})
-    // gsap.from('.menu', {
-    //   opacity:0,
-    //   duration:1
-    // })
+    gsap.from(menuDiv, {scaleX:0, duration:.5, transformOrigin: 'left'})
+    gsap.to(menuDiv, {scaleX:1, duration:.5, transformOrigin: 'left'})
 
-    // gsap.to('.menu',{
-    //   opacity:100,
-    //   duration:1
-    // })
     menuDiv.classList.toggle('menu--open')
   })
 

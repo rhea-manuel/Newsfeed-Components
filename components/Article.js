@@ -157,12 +157,28 @@ function articleMaker(article) {
   span.textContent = "+"
   span.classList.add("expandButton")
 
-  // console.log(span)
   parentPanel.appendChild(span)
 
+  // const articleSlide = gsap.timeline({paused: true})
+  
+  
   span.addEventListener('click', function(){
+    gsap.from(parentPanel, {opacity:0, duration:1, })
+    gsap.to(parentPanel, {opacity:1, duration:1, })
     parentPanel.classList.toggle("article-open")
+    
   })
+
+  span.addEventListener('mouseover', function(){
+    gsap.to(span,{duration:.5, scale:3})
+  })
+
+  span.addEventListener('mouseleave', function(){
+    gsap.to(span,{duration:.5,scale:1})
+  })
+
+  // console.log(span)
+  
 
   return parentPanel
   // console.log(parentPanel)
