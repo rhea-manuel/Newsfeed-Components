@@ -32,15 +32,15 @@ let menuItems = [
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
 
-function menuMaker(items){
+function menuMaker(items) {
 
   const menuDiv = document.createElement('div')
-  menuDiv.className='menu'
+  menuDiv.className = 'menu'
 
   const ul = document.createElement('ul')
   menuDiv.appendChild(ul)
 
-  for (let i = 0; i < items.length; i ++){
+  for (let i = 0; i < items.length; i++) {
     const curItem = document.createElement('li')
     curItem.textContent = items[i]
     ul.appendChild(curItem)
@@ -48,8 +48,49 @@ function menuMaker(items){
 
   const button = document.querySelector('.menu-button')
 
-  button.addEventListener('click', function(){
+  // animations
+  // var menuSlide = new TimelineMax()
+  // .to(menuDiv, 0.25, { opacity: 0.5, scale: 0.75 })
+  // .reverse();
+  const menuSlide = gsap.timeline({paused: true})
+  menuSlide.from(menuDiv, {scaleX:0, duration:.5, transformOrigin: 'left'})
+  menuSlide.to(menuDiv, {scaleX:1, duration:.5, transformOrigin: 'left'})
+  menuSlide.reverse()
+
+  button.addEventListener('click', function () {
+    // menuSlide.reverse()
+    menuSlide.restart()
+    // menuSlide.reverse()
+    // menuSlide.restart()
+    // gsap.fromTo(menuDiv, {opacity: 0, duration:1}, {opacity: 100, duration: 1})
+    // gsap.from('.menu', {
+    //   opacity:0,
+    //   duration:1
+    // })
+
+    // gsap.to('.menu',{
+    //   opacity:100,
+    //   duration:1
+    // })
     menuDiv.classList.toggle('menu--open')
+  })
+
+  button.addEventListener('mouseover', function () {
+    gsap
+      .to('.menu-button', {
+        scale: 1.25,
+        // ease:'bounce'
+      })
+    // button.style.animation="pulse 5s infinite"
+  })
+
+  button.addEventListener('mouseleave', function () {
+    gsap
+      .to('.menu-button', {
+        x: 0,
+        scale: 1,
+        // ease: "bounce"
+      })
   })
 
   return menuDiv
