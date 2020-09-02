@@ -61,15 +61,13 @@ function menuMaker(items) {
         scale: 1.25,
         // ease:'bounce'
       })
-    // button.style.animation="pulse 5s infinite"
   })
 
   button.addEventListener('mouseleave', function () {
     gsap
       .to('.menu-button', {
         x: 0,
-        scale: 1,
-        // ease: "bounce"
+        scale: 1
       })
   })
 

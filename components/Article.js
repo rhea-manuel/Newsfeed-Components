@@ -125,102 +125,69 @@ const data = [
   Refresh the page to see the new article.
 */
 function articleMaker(article) {
+
+  // Created the div and added the appropriate elements. 
   const parentPanel = document.createElement('div')
   parentPanel.className="article"
 
+  // Convert the object values into an array so it can be looped through easily.
   const allChildren = Object.values(article)
-  // console.log(allChildren)
 
+  // Make another array that matches the element tags of the pattern.
   const types = ['h2', 'p', 'p', 'p', 'p']
   createChildren()
-  // const allChildren = []
 
-  // const heading = document.createElement('h2').textContent = article.title
-  // const date = document.createElement('p').textContent = article.date
-  // const firstParagraph = document.createElement('p').textContent = article.firstParagraph
-  // const secondParagraph = document.createElement('p').textContent = article.secondParagraph
-  // const thirdParagraph = document.createElement('p').textContent = article.thirdParagraph
-  // const span = document.createElement('span').textContent = article.span
-
+  // Loop through all the elements and add the text content.
   function createChildren() {
     for (let i = 0; i < types.length; i++) {
       const toAdd = document.createElement(types[i])
       toAdd.textContent = allChildren[i]
 
       parentPanel.appendChild(toAdd)
-      // parentPanel.appendChild(document.createElement(types[i]).textContent=allChildren[i])
     }
   }
 
+  // Add the appropriare class to date.
   parentPanel.querySelector('p').classList.add('date')
+
+  // Create the span with appropriate text content and class.
   const span = document.createElement('span')
   span.textContent = "+"
   span.classList.add("expandButton")
 
+  // Add the span to the parent.
   parentPanel.appendChild(span)
-
-  // const articleSlide = gsap.timeline({paused: true})
   
-  
+  // Add the click event which toggles the classes.
   span.addEventListener('click', function(){
+
+    // STRETCH GOAL: Added gsap animations for when the button is clicked: A flickering fade effect.
     gsap.from(parentPanel, {opacity:0, duration:1, })
     gsap.to(parentPanel, {opacity:1, duration:1, })
+
+    // Toggle the class name.
     parentPanel.classList.toggle("article-open")
     
   })
 
+  // STRETCH GOAL: Added gsap animation for when the button is hovered: makes the button bigger and easier to see with a soft linear effect.
   span.addEventListener('mouseover', function(){
     gsap.to(span,{duration:.5, scale:3})
   })
 
+  // STRETCH GOAL: Resets the button to original size one the button isn't hovered anymore with a soft linear effect.
   span.addEventListener('mouseleave', function(){
     gsap.to(span,{duration:.5,scale:1})
   })
 
-  // console.log(span)
-  
-
   return parentPanel
-  // console.log(parentPanel)
-  // parentPanel.appendChild(document.createElement('span').className='expandbutton')
-
-  // console.lo
-
-  // const childrenTypes = [{type:'h2'},{type:'p'},{type:'p'},{type:'p'},'p','span']
-
-  // console.log(childrenTypes[0].happy)
-
-  // const allChildren = [{text:article.title, type:'h2', className:null},{text:article., type:'h2', className:null}]
-  // // const allChildren = [document.createElement('h2'),document.createElement('p').className='date', document.createElement('p'), document.createElement('p'), document.createElement('p'), document.createElement('span').className='expandButton']
-
-  // // const values = Object.values(article)
-
-  // function helper(allChildrenTypes){
-  //   // all children types is an array of objects. each object has a 'type' and 'className'
-  //   // parent is the parent panel that each new child element is attached to.
-
-  //   for (i = 0; i < allChildrenTypes.length; i++){
-  //     const curElement = document.createElement(allChildrenTypes[i].type)
-  //     if (allChildrenTypes[i].className!=null){
-  //       curElement.className=allChildrenTypes[i].className
-  //     }
-  //     parentPanel.appendChild(curElement)
-  //   }
-  // }
-
-  // for (let i = 0; i < allChildren.length; i++){
-
-  // }
-  // const h2 = 
-  // const 
 }
 
-// console.log(data[0])
-
+// Get parent articles div
 const parentDiv = document.querySelector('.articles')
+
+// Loop through all the newly created articles and adds it to the parent div.
 for (let i = 0; i < data.length; i++) {
   const newArticle = articleMaker(data[i])
   parentDiv.appendChild(newArticle)
 }
-
-
